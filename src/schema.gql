@@ -1,0 +1,150 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type LoginResponse {
+  accessToken: String!
+}
+
+type LoginListResponseWrapper {
+  success: Boolean!
+  message: String!
+  data: LoginResponse
+  errors: [String!]
+}
+
+type UserResponse {
+  id: BigInt!
+  name: String!
+  phone: String!
+  email: String!
+  role: String!
+  accountStatus: String!
+  operationalStatus: String!
+  createdAt: DateTime!
+}
+
+"""
+The `BigInt` scalar type represents non-fractional signed whole numeric values.
+"""
+scalar BigInt
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type VendorDetailResponse {
+  id: BigInt!
+  userId: BigInt!
+  shopName: String!
+  description: String!
+  category: String!
+  lat: Float!
+  lng: Float!
+  address: String!
+  varified: Boolean!
+  avgRating: Float!
+  user: UserResponse
+}
+
+type VendorResponse {
+  id: BigInt!
+  name: String!
+  phone: String!
+  email: String!
+  role: String!
+  accountStatus: String!
+  operationalStatus: String!
+  createdAt: DateTime!
+  vendor: VendorDetailResponse
+}
+
+type InfluencerResponses {
+  id: BigInt!
+  userId: BigInt!
+  category: String!
+  followersCount: String!
+  socialProfileUrl: String!
+  verified: String!
+  verificationSource: String!
+  user: UserResponse
+}
+
+type TrendingVendorResponse {
+  id: BigInt!
+  vendorId: BigInt!
+  influencerId: BigInt!
+  rating: Float!
+  mediaType: String!
+  mediaUrl: String!
+  moderationStatus: String!
+  vendor: VendorDetailResponse
+  influencer: InfluencerResponses
+}
+
+type VendorResponseWrapper {
+  success: Boolean!
+  message: String!
+  data: [VendorResponse!]
+  errors: [String!]
+}
+
+type SingleVendorResponse {
+  success: Boolean!
+  message: String!
+  data: VendorResponse
+  errors: [String!]
+}
+
+type TrendingVendorResponseWrapper {
+  success: Boolean!
+  message: String!
+  data: [TrendingVendorResponse!]
+  errors: [String!]
+}
+
+type InfluencerDetailResponse {
+  id: BigInt!
+  userId: BigInt!
+  category: String!
+  followersCount: Float!
+  socialProfileUrl: String!
+  verificationSource: String!
+}
+
+type InfluencerResponse {
+  id: BigInt!
+  name: String!
+  phone: String!
+  email: String!
+  role: String!
+  accountStatus: String!
+  operationalStatus: String!
+  createdAt: DateTime!
+  influencer: InfluencerDetailResponse
+}
+
+type InfluencerResponseWrapper {
+  success: Boolean!
+  message: String!
+  data: [InfluencerResponse!]
+  errors: [String!]
+}
+
+type Query {
+  healthCheck: String!
+  vendors: VendorResponseWrapper!
+  vendorDetail(id: ID!): SingleVendorResponse!
+  trendingVendor: TrendingVendorResponseWrapper!
+  influencers: InfluencerResponseWrapper!
+}
+
+type Mutation {
+  login(input: LoginInput!): LoginListResponseWrapper!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}

@@ -1,0 +1,23 @@
+services:
+  nestjs_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "3000:3000"
+
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+
+    develop:
+      watch:
+        # Sync source code changes into container
+        - action: sync
+          path: ./src
+          target: /app/src
+
+        # Rebuild image if dependencies change
+        - action: rebuild
+          path: package.json
