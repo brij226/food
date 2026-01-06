@@ -23,6 +23,10 @@ import { AuthResolver } from './graphql/auth/auth.resolver';
 import { GraphqlModule } from './graphql/graphql.module';
 
 import { join } from 'path';
+
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+} from '@apollo/server/plugin/landingPage/default';
 @Module({
     imports: [GraphqlModule,
     AuthModule, UserModule, PrismaModule, VendorModule, BookingModule, InfluencerModule, ReviewModule, CaslModule
@@ -30,9 +34,20 @@ import { join } from 'path';
 GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
        autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // generates schema automatically
-      playground: true, // for testing
+      playground: false, // for testing
       debug: true,
+      // ✅ REQUIRED
+      introspection: true,
+     //  sandbox: true,     // enable Apollo Sandbox
+
+     // introspection: true, // required for UI
+     plugins: [
+        ApolloServerPluginLandingPageLocalDefault({
+          footer: false,
+        }),
+      ],
        context: ({ req }) => ({ req }), // ✅ important for AuthGuard
+       
     })],
   //controllers: [AppController, AuthController],
   controllers: [AppController, CustomersController],
