@@ -36,8 +36,8 @@ import {
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
-    }),
-GraphQLModule.forRoot<ApolloDriverConfig>({
+      }),
+      GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
        autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // generates schema automatically
       playground: false, // for testing
@@ -52,8 +52,25 @@ GraphQLModule.forRoot<ApolloDriverConfig>({
           footer: false,
         }),
       ],
-       context: ({ req }) => ({ req }), // ✅ important for AuthGuard
-       
+      
+      context: ({ req }) => ({ req }), // ✅ important for AuthGuard
+      formatError: (error) => {
+        const code = error.extensions?.code;
+
+        if (code === 'GRAPHQL_VALIDATION_FAILED') {
+          return {
+            success: false,
+            message: 'Invalid request',
+            code: 'VALIDATION_ERROR',
+          };
+        }
+
+        return {
+          success: false,
+          message: 'Internal server error',
+          code: 'INTERNAL_SERVER_ERROR',
+        };
+      },
     })],
   //controllers: [AppController, AuthController],
   controllers: [AppController, CustomersController],
