@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthController } from './auth/auth.controller';
@@ -31,6 +32,11 @@ import {
     imports: [GraphqlModule,
     AuthModule, UserModule, PrismaModule, VendorModule, BookingModule, InfluencerModule, ReviewModule, CaslModule
   ,
+   // ✅ LOAD ENV VARIABLES (MOST IMPORTANT)
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
 GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
        autoSchemaFile: join(process.cwd(), 'src/schema.gql'), // generates schema automatically
