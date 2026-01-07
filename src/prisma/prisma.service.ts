@@ -29,8 +29,8 @@ export class PrismaService
   implements OnModuleInit, OnModuleDestroy
 {
   constructor() {
-    const conn = process.env.DATABASE_URL;
- 
+   // const conn = process.env.DATABASE_URL;
+    const conn = process.env.DATABASE_URL ?? 'postgresql://postgres:whLRvScFuYXhuMjdzMEAKnmvRnRJXzNG@caboose.proxy.rlwy.net:25453/railway';
     const pool = new PrismaPg({
       connectionString: String(conn),
       min: 2,  // persistent minimum connections
