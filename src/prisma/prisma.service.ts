@@ -29,9 +29,9 @@ export class PrismaService
   implements OnModuleInit, OnModuleDestroy
 {
   constructor() {
-  const conn = process.env.DATABASE_URL;
+    const conn = process.env.DATABASE_URL;
  
-  const pool = new PrismaPg({
+    const pool = new PrismaPg({
       connectionString: String(conn),
       min: 2,  // persistent minimum connections
       max: 10, // max concurrent connections
