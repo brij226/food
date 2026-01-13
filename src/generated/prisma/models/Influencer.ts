@@ -256,9 +256,9 @@ export type InfluencerWhereInput = {
   verificationSource?: Prisma.EnumVarificationSourceNullableFilter<"Influencer"> | $Enums.VarificationSource | null
   verifiedAt?: Prisma.DateTimeNullableFilter<"Influencer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Influencer"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   influencerCollaboration?: Prisma.InfluencerCollaborationListRelationFilter
   influencerReview?: Prisma.InfluencerReviewListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type InfluencerOrderByWithRelationInput = {
@@ -271,9 +271,9 @@ export type InfluencerOrderByWithRelationInput = {
   verificationSource?: Prisma.SortOrderInput | Prisma.SortOrder
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
   influencerCollaboration?: Prisma.InfluencerCollaborationOrderByRelationAggregateInput
   influencerReview?: Prisma.InfluencerReviewOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type InfluencerWhereUniqueInput = Prisma.AtLeast<{
@@ -289,9 +289,9 @@ export type InfluencerWhereUniqueInput = Prisma.AtLeast<{
   verificationSource?: Prisma.EnumVarificationSourceNullableFilter<"Influencer"> | $Enums.VarificationSource | null
   verifiedAt?: Prisma.DateTimeNullableFilter<"Influencer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Influencer"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   influencerCollaboration?: Prisma.InfluencerCollaborationListRelationFilter
   influencerReview?: Prisma.InfluencerReviewListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId">
 
 export type InfluencerOrderByWithAggregationInput = {
@@ -335,9 +335,9 @@ export type InfluencerCreateInput = {
   verificationSource?: $Enums.VarificationSource | null
   verifiedAt?: Date | string | null
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutInfluencerInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutInfluencerInput
   influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutInfluencerInput
+  user: Prisma.UserCreateNestedOneWithoutInfluencerInput
 }
 
 export type InfluencerUncheckedCreateInput = {
@@ -363,9 +363,9 @@ export type InfluencerUpdateInput = {
   verificationSource?: Prisma.NullableEnumVarificationSourceFieldUpdateOperationsInput | $Enums.VarificationSource | null
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutInfluencerNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutInfluencerNestedInput
   influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutInfluencerNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutInfluencerNestedInput
 }
 
 export type InfluencerUncheckedUpdateInput = {
@@ -616,8 +616,8 @@ export type InfluencerCreateWithoutInfluencerCollaborationInput = {
   verificationSource?: $Enums.VarificationSource | null
   verifiedAt?: Date | string | null
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutInfluencerInput
   influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutInfluencerInput
+  user: Prisma.UserCreateNestedOneWithoutInfluencerInput
 }
 
 export type InfluencerUncheckedCreateWithoutInfluencerCollaborationInput = {
@@ -658,8 +658,8 @@ export type InfluencerUpdateWithoutInfluencerCollaborationInput = {
   verificationSource?: Prisma.NullableEnumVarificationSourceFieldUpdateOperationsInput | $Enums.VarificationSource | null
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutInfluencerNestedInput
   influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutInfluencerNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutInfluencerNestedInput
 }
 
 export type InfluencerUncheckedUpdateWithoutInfluencerCollaborationInput = {
@@ -684,8 +684,8 @@ export type InfluencerCreateWithoutInfluencerReviewInput = {
   verificationSource?: $Enums.VarificationSource | null
   verifiedAt?: Date | string | null
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutInfluencerInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutInfluencerInput
+  user: Prisma.UserCreateNestedOneWithoutInfluencerInput
 }
 
 export type InfluencerUncheckedCreateWithoutInfluencerReviewInput = {
@@ -726,8 +726,8 @@ export type InfluencerUpdateWithoutInfluencerReviewInput = {
   verificationSource?: Prisma.NullableEnumVarificationSourceFieldUpdateOperationsInput | $Enums.VarificationSource | null
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutInfluencerNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutInfluencerNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutInfluencerNestedInput
 }
 
 export type InfluencerUncheckedUpdateWithoutInfluencerReviewInput = {
@@ -793,9 +793,9 @@ export type InfluencerSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   verificationSource?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   influencerCollaboration?: boolean | Prisma.Influencer$influencerCollaborationArgs<ExtArgs>
   influencerReview?: boolean | Prisma.Influencer$influencerReviewArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.InfluencerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["influencer"]>
 
@@ -839,9 +839,9 @@ export type InfluencerSelectScalar = {
 
 export type InfluencerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "category" | "followersCount" | "socialProfileUrl" | "verified" | "verificationSource" | "verifiedAt" | "createdAt", ExtArgs["result"]["influencer"]>
 export type InfluencerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   influencerCollaboration?: boolean | Prisma.Influencer$influencerCollaborationArgs<ExtArgs>
   influencerReview?: boolean | Prisma.Influencer$influencerReviewArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.InfluencerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InfluencerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -854,9 +854,9 @@ export type InfluencerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $InfluencerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Influencer"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     influencerCollaboration: Prisma.$InfluencerCollaborationPayload<ExtArgs>[]
     influencerReview: Prisma.$InfluencerReviewPayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1262,9 +1262,9 @@ readonly fields: InfluencerFieldRefs;
  */
 export interface Prisma__InfluencerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   influencerCollaboration<T extends Prisma.Influencer$influencerCollaborationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Influencer$influencerCollaborationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InfluencerCollaborationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   influencerReview<T extends Prisma.Influencer$influencerReviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Influencer$influencerReviewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InfluencerReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

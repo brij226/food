@@ -28,6 +28,8 @@ import { join } from 'path';
 import {
   ApolloServerPluginLandingPageLocalDefault,
 } from '@apollo/server/plugin/landingPage/default';
+import { CategoryModule } from './category/category.module';
+
 @Module({
     imports: [GraphqlModule,
     AuthModule, UserModule, PrismaModule, VendorModule, BookingModule, InfluencerModule, ReviewModule, CaslModule
@@ -54,7 +56,7 @@ import {
       ],
       
       context: ({ req }) => ({ req }), // ✅ important for AuthGuard
-      formatError: (error) => {
+      /*formatError: (error) => {
         const code = error.extensions?.code;
 
         if (code === 'GRAPHQL_VALIDATION_FAILED') {
@@ -67,11 +69,12 @@ import {
 
         return {
           success: false,
-          message: 'Internal server error',
+          message: 'Internal server errordd',
           code: 'INTERNAL_SERVER_ERROR',
         };
-      },
-    })],
+      },*/
+    }),
+      CategoryModule],
   //controllers: [AppController, AuthController],
   controllers: [AppController, CustomersController],
   providers: [AuthModule, AppService, UserService , {

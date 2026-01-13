@@ -1,26 +1,203 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output = "../src/generated/prisma"
-  moduleFormat    = "cjs"
-    engineType    = "binary" // default native engine
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  engineType   = "binary"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-enum AccountStatus {
-  active    // can login
-  blocked   // cannot login
+model User {
+  id                BigInt            @id @default(autoincrement())
+  name              String            @db.VarChar(100)
+  phone             String            @db.VarChar(15)
+  email             String            @unique @db.VarChar(255)
+  password          String            @db.VarChar(255)
+  role              String            @default("user") @db.VarChar(50)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  accountStatus     AccountStatus     @default(active)
+  operationalStatus OperationalStatus @default(pending)
+  booking           Booking[]
+  customerReview    CustomerReview[]
+  influencer        Influencer?
+  vendor            Vendor?
+
+  @@index([email], map: "idx_user_email")
+  @@map("users")
 }
 
-enum OperationalStatus  {
+model Vendor {
+  id                      BigInt                    @id @default(autoincrement())
+  userId                  BigInt                    @unique
+  shopName                String                    @db.VarChar(150)
+  description             String
+  categoryId              Int
+  lat                     Float
+  lng                     Float
+  address                 String
+  varified                Boolean                   @default(false)
+  avgRating               Decimal                   @default(0) @db.Decimal(3, 2)
+  minPrice                Decimal                   @default(0) @db.Decimal(10, 2)
+  createdAt               DateTime                  @default(now())
+  booking                 Booking[]
+  customerReview          CustomerReview[]
+  influencerCollaboration InfluencerCollaboration[]
+  influencerReview        InfluencerReview[]
+  menu                    Menu[]
+  vendorDocument          VendorDocument?
+  user                    User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  category    Category @relation(fields: [categoryId], references: [id])
+  @@map("vendors")
+}
+
+model Menu {
+  id        BigInt   @id @default(autoincrement())
+  vendorId  BigInt
+  name      String   @db.VarChar(120)
+  price     Decimal  @default(0) @db.Decimal(10, 2)
+  unit      String   @db.VarChar(50)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  vendor    Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@index([vendorId])
+  @@index([price])
+  @@map("menus")
+}
+
+model Booking {
+  id            BigInt        @id @default(autoincrement())
+  vendorId      BigInt
+  customerId    BigInt
+  scheduledAt   DateTime
+  advancePaid   Decimal?      @db.Decimal(10, 2)
+  trackingCode  String        @db.VarChar(64)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  amount        Decimal       @db.Decimal(10, 2)
+  bookingCode   String        @unique @db.VarChar(64)
+  bookingStatus BookingStatus @default(request)
+  paymentStatus PaymentStatus @default(pending)
+  serviceDate   DateTime?
+  serviceType   String        @db.VarChar(64)
+  user          User          @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  vendor        Vendor        @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@map("bookings")
+}
+
+model VendorDocument {
+  id          BigInt         @id @default(autoincrement())
+  vendorId    BigInt         @unique
+  docType     DocumentType
+  docNumber   String         @db.VarChar(100)
+  docUrl      String         @db.VarChar(255)
+  docStatus   DocumentStatus @default(pending)
+  submittedAt DateTime       @default(now())
+  varifiedAt  DateTime?
+  vendor      Vendor         @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@map("vendor_documents")
+}
+
+model CustomerReview {
+  id         BigInt   @id @default(autoincrement())
+  customerId BigInt
+  vendorId   BigInt
+  rating     Int
+  comment    String?
+  createdAt  DateTime @default(now())
+  customer   User     @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  vendor     Vendor   @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@map("customer_reviews")
+}
+
+model Influencer {
+  id                      BigInt                    @id @default(autoincrement())
+  userId                  BigInt                    @unique
+  category                String                    @db.VarChar(50)
+  followersCount          Int                       @default(0)
+  socialProfileUrl        String                    @db.VarChar(255)
+  verified                Boolean                   @default(false)
+  verificationSource      VarificationSource?
+  verifiedAt              DateTime?
+  createdAt               DateTime                  @default(now())
+  influencerCollaboration InfluencerCollaboration[]
+  influencerReview        InfluencerReview[]
+  user                    User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("influencers")
+}
+
+model InfluencerCollaboration {
+  id                 BigInt              @id @default(autoincrement())
+  vendorId           BigInt
+  influencerId       BigInt
+  scheduledAt        DateTime
+  status             CollaborationStatus @default(requested)
+  compensationType   CompensationType?
+  compensationAmount Decimal?            @db.Decimal(10, 2)
+  notes              String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  influencer         Influencer          @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  vendor             Vendor              @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+  influencerReview   InfluencerReview?   @relation("CollaborationReview")
+
+  @@index([vendorId])
+  @@index([influencerId])
+  @@map("influencer_collaborations")
+}
+
+model InfluencerReview {
+  id               BigInt                  @id @default(autoincrement())
+  collaborationId  BigInt                  @unique
+  vendorId         BigInt
+  influencerId     BigInt
+  caption          String?
+  rating           Int?
+  mediaUrl         String                  @db.VarChar(255)
+  mediaType        MediaType
+  moderationStatus ReviewStatus            @default(pending)
+  publishedAt      DateTime?
+  createdAt        DateTime                @default(now())
+  updatedAt        DateTime                @updatedAt
+  collaboration    InfluencerCollaboration @relation("CollaborationReview", fields: [collaborationId], references: [id], onDelete: Cascade)
+  influencer       Influencer              @relation(fields: [influencerId], references: [id], onDelete: Cascade)
+  vendor           Vendor                  @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@map("influencer_reviews")
+}
+
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  slug      String   @unique
+  iconUrl   String?
+  isActive  Boolean  @default(true)
+  sortOrder Int      @default(0)
+
+  vendors   Vendor[]
+
+  createdAt DateTime @default(now())
+
+  @@map("category")
+}
+
+
+enum AccountStatus {
+  active
+  blocked
+}
+
+enum OperationalStatus {
   pending
   active
   inactive
@@ -33,7 +210,7 @@ enum DocumentType {
 }
 
 enum DocumentStatus {
-  pending 
+  pending
   approved
   rejected
 }
@@ -45,12 +222,12 @@ enum PaymentStatus {
 }
 
 enum BookingStatus {
-  request       // Customer created booking (DEFAULT)
-  accepted      // Vendor approved booking
-  declined      // Vendor rejected booking
-  completed     // Service done
-  cancelled     // Customer/vendor cancelled
-  refunded      // Refund processed (optional)
+  request
+  accepted
+  declined
+  completed
+  cancelled
+  refunded
 }
 
 enum VarificationSource {
@@ -71,199 +248,15 @@ enum ReviewStatus {
 }
 
 enum CollaborationStatus {
-  requested //vendor invited
-  accepted  //influencer accepted
-  rejected  //influencer rejected
-  completed //visit done
-  cancelled 
+  requested
+  accepted
+  rejected
+  completed
+  cancelled
 }
 
-enum  CompensationType {
+enum CompensationType {
   cash
   barter
   free_food
 }
-
-model User {
-  id      BigInt      @id @default(autoincrement())
-  name    String      @db.VarChar(100)
-  phone   String      @db.VarChar(15)
-  email   String      @unique @db.VarChar(255)
-  password String     @db.VarChar(255)
-  
-  role    String      @default("user") @db.VarChar(50)
-
-  accountStatus    AccountStatus     @default(active)   // login control
-  operationalStatus OperationalStatus @default(pending) // service/approval status
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  vendor  Vendor?
-  influencer Influencer?
-  customerReview CustomerReview[]
-  booking Booking[]
-
-
-  @@map("users")
-}
-
-model Vendor {
-  id          BigInt   @id @default(autoincrement())
-  userId      BigInt   @unique @db.BigInt 
-  shopName    String   @db.VarChar(150)
-  description String    
-  category    String   @db.VarChar(50)
-  lat         Float
-  lng         Float     
-  address     String
-  varified    Boolean  @default(false)
-  avgRating   Decimal  @default(0) @db.Decimal(3,2)
-  createdAt DateTime  @default(now())
-  
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  menu        Menu[]
-  booking     Booking[]
-  vendorDocument VendorDocument?
-  customerReview CustomerReview[]
-  influencerReview InfluencerReview[]
-  influencerCollaboration InfluencerCollaboration[]
-  @@map("vendors")
-}
-
-model Menu {
-  id          BigInt    @id @default(autoincrement())
-  vendorId    BigInt    @db.BigInt   
-  name        String    @db.VarChar(120)
-  price       Decimal   @default(0) @db.Decimal(10,2)  
-  unit        String    @db.VarChar(50)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime @updatedAt
-
-  vendor      Vendor    @relation(fields: [vendorId], references: [id], onDelete: Cascade)
-  @@map("menus")
-}
-
-model Booking {
-  id            BigInt    @id @default(autoincrement())
-  bookingCode   String    @unique @db.VarChar(64)
-  vendorId      BigInt    @db.BigInt
-  customerId    BigInt    @db.BigInt
-
-  serviceType   String    @db.VarChar(64)
-  serviceDate   DateTime? 
-
-  amount        Decimal   @db.Decimal(10,2)
-  advancePaid   Decimal?  @db.Decimal(10,2)
-  trackingCode  String    @db.VarChar(64)
-
-  paymentStatus PaymentStatus @default(pending)  // pending, paid, failed, refunded   
-  bookingStatus BookingStatus @default(request)  //requested, accepted, declined, completed, cancelled
-  
-  scheduledAt   DateTime
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  vendor        Vendor    @relation(fields: [vendorId], references: [id], onDelete: Cascade)
-  user          User      @relation(fields: [customerId], references: [id], onDelete: Cascade)
-  @@map("bookings")
-}
-
-model VendorDocument {
-  id          BigInt    @id @default(autoincrement())
-  vendorId    BigInt    @unique @db.BigInt
-  docType     DocumentType 
-  docNumber   String    @db.VarChar(100)
-  docUrl      String    @db.VarChar(255)
-  docStatus   DocumentStatus  @default(pending)
-  submittedAt DateTime  @default(now())
-  varifiedAt  DateTime?
-  
-  vendor      Vendor    @relation(fields: [vendorId], references: [id], onDelete: Cascade)
-  @@map("vendor_documents")
-}
-
-
-model CustomerReview {
-  id          BigInt    @id @default(autoincrement())
-  customerId  BigInt    @db.BigInt
-  vendorId    BigInt    @db.BigInt
-  rating      Int
-  comment     String?
-  createdAt   DateTime  @default(now())
-
-  customer    User      @relation(fields: [customerId], references: [id], onDelete: Cascade)
-  vendor      Vendor    @relation(fields: [vendorId], references: [id], onDelete: Cascade)
-  @@map("customer_reviews")
-}
-
-model Influencer {
-  id                  BigInt    @id @default(autoincrement())
-  userId              BigInt    @unique
-  category            String    @db.VarChar(50)
-  followersCount      Int       @default(0)
-  socialProfileUrl    String    @db.VarChar(255)
-  verified            Boolean   @default(false)
-  verificationSource  VarificationSource?
-  verifiedAt          DateTime?                              
-  createdAt           DateTime  @default(now())
-
-  user  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  influencerCollaboration InfluencerCollaboration[]
-  influencerReview    InfluencerReview[]
-  @@map("influencers")
-}
-
-model InfluencerCollaboration {
-  id                  BigInt  @id @default(autoincrement())
-  
-  vendorId            BigInt  
-  influencerId        BigInt
-
-  scheduledAt         DateTime
-  status              CollaborationStatus @default(requested)
-
-  compensationType    CompensationType?
-  compensationAmount  Decimal? @db.Decimal(10,2)
-
-  notes               String?
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime  @updatedAt
-  
-  vendor              Vendor  @relation(fields: [vendorId], references: [id], onDelete: Cascade)
-  influencer          Influencer  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
-
-  influencerReview    InfluencerReview? @relation("CollaborationReview")
-
-  @@map("influencer_collaborations")
-  @@index([vendorId])
-  @@index([influencerId])
-} 
-
-model InfluencerReview {
-  id                  BigInt @id @default(autoincrement())
-  collaborationId     BigInt @unique
-  vendorId            BigInt
-  influencerId        BigInt
-  caption             String?
-  rating              Int?
-  mediaUrl            String  @db.VarChar(255)
-  mediaType           MediaType
-
-  moderationStatus    ReviewStatus @default(pending)
-  publishedAt         DateTime?
-
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-
-  collaboration       InfluencerCollaboration @relation("CollaborationReview",fields: [collaborationId], references: [id], onDelete: Cascade)
-
-  vendor              Vendor  @relation(fields:[vendorId], references: [id], onDelete: Cascade)
-  influencer          Influencer  @relation(fields: [influencerId], references: [id], onDelete: Cascade)
-  @@map("influencer_reviews")
-}
-
-
-
-
-

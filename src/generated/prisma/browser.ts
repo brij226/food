@@ -62,3 +62,8 @@ export type InfluencerCollaboration = Prisma.InfluencerCollaborationModel
  * 
  */
 export type InfluencerReview = Prisma.InfluencerReviewModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel

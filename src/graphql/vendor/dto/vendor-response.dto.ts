@@ -26,7 +26,7 @@ export class UserResponse {
   @Field()
   operationalStatus: string;
 
-  @Field()
+  @Field(() => Date)
   createdAt: Date;
 
 }
@@ -46,7 +46,7 @@ export class VendorDetailResponse {
   description: string;
 
   @Field()
-  category: string;
+  categoryId: string;
 
   @Field()
   lat: number;

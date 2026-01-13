@@ -39,7 +39,7 @@ type VendorDetailResponse {
   userId: BigInt!
   shopName: String!
   description: String!
-  category: String!
+  categoryId: String!
   lat: Float!
   lng: Float!
   address: String!
@@ -132,12 +132,71 @@ type InfluencerResponseWrapper {
   errors: [String!]
 }
 
+type CustomerResponse {
+  id: BigInt!
+  name: String!
+  phone: String!
+  email: String!
+}
+
+type BookingResponse {
+  id: BigInt!
+  vendorId: BigInt!
+  customerId: BigInt!
+  scheduledAt: DateTime!
+  advancePaid: Float!
+  trackingCode: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  amount: Float!
+  bookingCode: String!
+  bookingStatus: String!
+  paymentStatus: String!
+  serviceDate: DateTime!
+  serviceType: String!
+  user: CustomerResponse!
+  vendor: VendorDetailResponse!
+}
+
+type BookingResponseWrapper {
+  success: Boolean!
+  message: String!
+  data: [BookingResponse!]
+  errors: [String!]
+}
+
+type CategoryResponse {
+  id: Float!
+  name: String!
+  slug: String!
+  iconUrl: String!
+  isActive: Boolean!
+}
+
+type CategoryResponseWrapper {
+  success: Boolean!
+  message: String!
+  data: [CategoryResponse!]
+  errors: [String!]
+}
+
 type Query {
   healthCheck: String!
-  vendors: VendorResponseWrapper!
+  vendors(categoryId: Int, rating: Float, minPrice: Float, maxPrice: Float, sortBy: String): VendorResponseWrapper!
   vendorDetail(id: ID!): SingleVendorResponse!
   trendingVendor: TrendingVendorResponseWrapper!
   influencers: InfluencerResponseWrapper!
+  customerBooking(status: BookingStatus!, isEqual: Boolean!): BookingResponseWrapper!
+  getActiveCategories: CategoryResponseWrapper!
+}
+
+enum BookingStatus {
+  request
+  accepted
+  declined
+  completed
+  cancelled
+  refunded
 }
 
 type Mutation {

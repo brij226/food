@@ -41,10 +41,10 @@ export type UserMinAggregateOutputType = {
   email: string | null
   password: string | null
   role: string | null
-  accountStatus: $Enums.AccountStatus | null
-  operationalStatus: $Enums.OperationalStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  accountStatus: $Enums.AccountStatus | null
+  operationalStatus: $Enums.OperationalStatus | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -54,10 +54,10 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   password: string | null
   role: string | null
-  accountStatus: $Enums.AccountStatus | null
-  operationalStatus: $Enums.OperationalStatus | null
   createdAt: Date | null
   updatedAt: Date | null
+  accountStatus: $Enums.AccountStatus | null
+  operationalStatus: $Enums.OperationalStatus | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -67,10 +67,10 @@ export type UserCountAggregateOutputType = {
   email: number
   password: number
   role: number
-  accountStatus: number
-  operationalStatus: number
   createdAt: number
   updatedAt: number
+  accountStatus: number
+  operationalStatus: number
   _all: number
 }
 
@@ -90,10 +90,10 @@ export type UserMinAggregateInputType = {
   email?: true
   password?: true
   role?: true
-  accountStatus?: true
-  operationalStatus?: true
   createdAt?: true
   updatedAt?: true
+  accountStatus?: true
+  operationalStatus?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -103,10 +103,10 @@ export type UserMaxAggregateInputType = {
   email?: true
   password?: true
   role?: true
-  accountStatus?: true
-  operationalStatus?: true
   createdAt?: true
   updatedAt?: true
+  accountStatus?: true
+  operationalStatus?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -116,10 +116,10 @@ export type UserCountAggregateInputType = {
   email?: true
   password?: true
   role?: true
-  accountStatus?: true
-  operationalStatus?: true
   createdAt?: true
   updatedAt?: true
+  accountStatus?: true
+  operationalStatus?: true
   _all?: true
 }
 
@@ -216,10 +216,10 @@ export type UserGroupByOutputType = {
   email: string
   password: string
   role: string
-  accountStatus: $Enums.AccountStatus
-  operationalStatus: $Enums.OperationalStatus
   createdAt: Date
   updatedAt: Date
+  accountStatus: $Enums.AccountStatus
+  operationalStatus: $Enums.OperationalStatus
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -252,14 +252,14 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   role?: Prisma.StringFilter<"User"> | string
-  accountStatus?: Prisma.EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFilter<"User"> | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
-  influencer?: Prisma.XOR<Prisma.InfluencerNullableScalarRelationFilter, Prisma.InfluencerWhereInput> | null
-  customerReview?: Prisma.CustomerReviewListRelationFilter
+  accountStatus?: Prisma.EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFilter<"User"> | $Enums.OperationalStatus
   booking?: Prisma.BookingListRelationFilter
+  customerReview?: Prisma.CustomerReviewListRelationFilter
+  influencer?: Prisma.XOR<Prisma.InfluencerNullableScalarRelationFilter, Prisma.InfluencerWhereInput> | null
+  vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -269,14 +269,14 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  accountStatus?: Prisma.SortOrder
-  operationalStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  vendor?: Prisma.VendorOrderByWithRelationInput
-  influencer?: Prisma.InfluencerOrderByWithRelationInput
-  customerReview?: Prisma.CustomerReviewOrderByRelationAggregateInput
+  accountStatus?: Prisma.SortOrder
+  operationalStatus?: Prisma.SortOrder
   booking?: Prisma.BookingOrderByRelationAggregateInput
+  customerReview?: Prisma.CustomerReviewOrderByRelationAggregateInput
+  influencer?: Prisma.InfluencerOrderByWithRelationInput
+  vendor?: Prisma.VendorOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -289,14 +289,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   role?: Prisma.StringFilter<"User"> | string
-  accountStatus?: Prisma.EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFilter<"User"> | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
-  influencer?: Prisma.XOR<Prisma.InfluencerNullableScalarRelationFilter, Prisma.InfluencerWhereInput> | null
-  customerReview?: Prisma.CustomerReviewListRelationFilter
+  accountStatus?: Prisma.EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFilter<"User"> | $Enums.OperationalStatus
   booking?: Prisma.BookingListRelationFilter
+  customerReview?: Prisma.CustomerReviewListRelationFilter
+  influencer?: Prisma.XOR<Prisma.InfluencerNullableScalarRelationFilter, Prisma.InfluencerWhereInput> | null
+  vendor?: Prisma.XOR<Prisma.VendorNullableScalarRelationFilter, Prisma.VendorWhereInput> | null
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -306,10 +306,10 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  accountStatus?: Prisma.SortOrder
-  operationalStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountStatus?: Prisma.SortOrder
+  operationalStatus?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -327,10 +327,10 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
   role?: Prisma.StringWithAggregatesFilter<"User"> | string
-  accountStatus?: Prisma.EnumAccountStatusWithAggregatesFilter<"User"> | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusWithAggregatesFilter<"User"> | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
+  accountStatus?: Prisma.EnumAccountStatusWithAggregatesFilter<"User"> | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusWithAggregatesFilter<"User"> | $Enums.OperationalStatus
 }
 
 export type UserCreateInput = {
@@ -340,14 +340,14 @@ export type UserCreateInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
-  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
-  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutCustomerInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingCreateNestedManyWithoutUserInput
+  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutCustomerInput
+  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -357,14 +357,14 @@ export type UserUncheckedCreateInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
-  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
-  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutCustomerInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutUserInput
+  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutCustomerInput
+  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -374,14 +374,14 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
-  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
-  customerReview?: Prisma.CustomerReviewUpdateManyWithoutCustomerNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUpdateManyWithoutUserNestedInput
+  customerReview?: Prisma.CustomerReviewUpdateManyWithoutCustomerNestedInput
+  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -391,14 +391,14 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
-  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
-  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedUpdateManyWithoutUserNestedInput
+  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -408,10 +408,10 @@ export type UserCreateManyInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
 }
 
 export type UserUpdateManyMutationInput = {
@@ -421,10 +421,10 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -434,10 +434,10 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -447,10 +447,10 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  accountStatus?: Prisma.SortOrder
-  operationalStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountStatus?: Prisma.SortOrder
+  operationalStatus?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -464,10 +464,10 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  accountStatus?: Prisma.SortOrder
-  operationalStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountStatus?: Prisma.SortOrder
+  operationalStatus?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -477,10 +477,10 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
-  accountStatus?: Prisma.SortOrder
-  operationalStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  accountStatus?: Prisma.SortOrder
+  operationalStatus?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -504,16 +504,16 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 export type EnumAccountStatusFieldUpdateOperationsInput = {
   set?: $Enums.AccountStatus
 }
 
 export type EnumOperationalStatusFieldUpdateOperationsInput = {
   set?: $Enums.OperationalStatus
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
 }
 
 export type UserCreateNestedOneWithoutVendorInput = {
@@ -579,13 +579,13 @@ export type UserCreateWithoutVendorInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
-  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutCustomerInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingCreateNestedManyWithoutUserInput
+  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutCustomerInput
+  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutVendorInput = {
@@ -595,13 +595,13 @@ export type UserUncheckedCreateWithoutVendorInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
-  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutCustomerInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutUserInput
+  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutCustomerInput
+  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutVendorInput = {
@@ -627,13 +627,13 @@ export type UserUpdateWithoutVendorInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
-  customerReview?: Prisma.CustomerReviewUpdateManyWithoutCustomerNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUpdateManyWithoutUserNestedInput
+  customerReview?: Prisma.CustomerReviewUpdateManyWithoutCustomerNestedInput
+  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutVendorInput = {
@@ -643,13 +643,13 @@ export type UserUncheckedUpdateWithoutVendorInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
-  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedUpdateManyWithoutUserNestedInput
+  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBookingInput = {
@@ -659,13 +659,13 @@ export type UserCreateWithoutBookingInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
-  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutCustomerInput
+  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBookingInput = {
@@ -675,13 +675,13 @@ export type UserUncheckedCreateWithoutBookingInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
-  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutCustomerInput
+  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBookingInput = {
@@ -707,13 +707,13 @@ export type UserUpdateWithoutBookingInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
-  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   customerReview?: Prisma.CustomerReviewUpdateManyWithoutCustomerNestedInput
+  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBookingInput = {
@@ -723,13 +723,13 @@ export type UserUncheckedUpdateWithoutBookingInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
-  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCustomerReviewInput = {
@@ -739,13 +739,13 @@ export type UserCreateWithoutCustomerReviewInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
-  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingCreateNestedManyWithoutUserInput
+  influencer?: Prisma.InfluencerCreateNestedOneWithoutUserInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCustomerReviewInput = {
@@ -755,13 +755,13 @@ export type UserUncheckedCreateWithoutCustomerReviewInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
-  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutUserInput
+  influencer?: Prisma.InfluencerUncheckedCreateNestedOneWithoutUserInput
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCustomerReviewInput = {
@@ -787,13 +787,13 @@ export type UserUpdateWithoutCustomerReviewInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
-  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUpdateManyWithoutUserNestedInput
+  influencer?: Prisma.InfluencerUpdateOneWithoutUserNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCustomerReviewInput = {
@@ -803,13 +803,13 @@ export type UserUncheckedUpdateWithoutCustomerReviewInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
-  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedUpdateManyWithoutUserNestedInput
+  influencer?: Prisma.InfluencerUncheckedUpdateOneWithoutUserNestedInput
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutInfluencerInput = {
@@ -819,13 +819,13 @@ export type UserCreateWithoutInfluencerInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
-  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutCustomerInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingCreateNestedManyWithoutUserInput
+  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutCustomerInput
+  vendor?: Prisma.VendorCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutInfluencerInput = {
@@ -835,13 +835,13 @@ export type UserUncheckedCreateWithoutInfluencerInput = {
   email: string
   password: string
   role?: string
-  accountStatus?: $Enums.AccountStatus
-  operationalStatus?: $Enums.OperationalStatus
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
-  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutCustomerInput
+  accountStatus?: $Enums.AccountStatus
+  operationalStatus?: $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutUserInput
+  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutCustomerInput
+  vendor?: Prisma.VendorUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutInfluencerInput = {
@@ -867,13 +867,13 @@ export type UserUpdateWithoutInfluencerInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
-  customerReview?: Prisma.CustomerReviewUpdateManyWithoutCustomerNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUpdateManyWithoutUserNestedInput
+  customerReview?: Prisma.CustomerReviewUpdateManyWithoutCustomerNestedInput
+  vendor?: Prisma.VendorUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInfluencerInput = {
@@ -883,13 +883,13 @@ export type UserUncheckedUpdateWithoutInfluencerInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.StringFieldUpdateOperationsInput | string
-  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
-  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
-  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  operationalStatus?: Prisma.EnumOperationalStatusFieldUpdateOperationsInput | $Enums.OperationalStatus
   booking?: Prisma.BookingUncheckedUpdateManyWithoutUserNestedInput
+  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutCustomerNestedInput
+  vendor?: Prisma.VendorUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -898,13 +898,13 @@ export type UserUncheckedUpdateWithoutInfluencerInput = {
  */
 
 export type UserCountOutputType = {
-  customerReview: number
   booking: number
+  customerReview: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  customerReview?: boolean | UserCountOutputTypeCountCustomerReviewArgs
   booking?: boolean | UserCountOutputTypeCountBookingArgs
+  customerReview?: boolean | UserCountOutputTypeCountCustomerReviewArgs
 }
 
 /**
@@ -920,15 +920,15 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountCustomerReviewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CustomerReviewWhereInput
+export type UserCountOutputTypeCountBookingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookingWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountBookingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BookingWhereInput
+export type UserCountOutputTypeCountCustomerReviewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CustomerReviewWhereInput
 }
 
 
@@ -939,14 +939,14 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   password?: boolean
   role?: boolean
-  accountStatus?: boolean
-  operationalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  vendor?: boolean | Prisma.User$vendorArgs<ExtArgs>
-  influencer?: boolean | Prisma.User$influencerArgs<ExtArgs>
-  customerReview?: boolean | Prisma.User$customerReviewArgs<ExtArgs>
+  accountStatus?: boolean
+  operationalStatus?: boolean
   booking?: boolean | Prisma.User$bookingArgs<ExtArgs>
+  customerReview?: boolean | Prisma.User$customerReviewArgs<ExtArgs>
+  influencer?: boolean | Prisma.User$influencerArgs<ExtArgs>
+  vendor?: boolean | Prisma.User$vendorArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -957,10 +957,10 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   password?: boolean
   role?: boolean
-  accountStatus?: boolean
-  operationalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accountStatus?: boolean
+  operationalStatus?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -970,10 +970,10 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   password?: boolean
   role?: boolean
-  accountStatus?: boolean
-  operationalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accountStatus?: boolean
+  operationalStatus?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -983,18 +983,18 @@ export type UserSelectScalar = {
   email?: boolean
   password?: boolean
   role?: boolean
-  accountStatus?: boolean
-  operationalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  accountStatus?: boolean
+  operationalStatus?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "email" | "password" | "role" | "accountStatus" | "operationalStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "email" | "password" | "role" | "createdAt" | "updatedAt" | "accountStatus" | "operationalStatus", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  vendor?: boolean | Prisma.User$vendorArgs<ExtArgs>
-  influencer?: boolean | Prisma.User$influencerArgs<ExtArgs>
-  customerReview?: boolean | Prisma.User$customerReviewArgs<ExtArgs>
   booking?: boolean | Prisma.User$bookingArgs<ExtArgs>
+  customerReview?: boolean | Prisma.User$customerReviewArgs<ExtArgs>
+  influencer?: boolean | Prisma.User$influencerArgs<ExtArgs>
+  vendor?: boolean | Prisma.User$vendorArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1003,10 +1003,10 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    vendor: Prisma.$VendorPayload<ExtArgs> | null
-    influencer: Prisma.$InfluencerPayload<ExtArgs> | null
-    customerReview: Prisma.$CustomerReviewPayload<ExtArgs>[]
     booking: Prisma.$BookingPayload<ExtArgs>[]
+    customerReview: Prisma.$CustomerReviewPayload<ExtArgs>[]
+    influencer: Prisma.$InfluencerPayload<ExtArgs> | null
+    vendor: Prisma.$VendorPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1015,10 +1015,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     password: string
     role: string
-    accountStatus: $Enums.AccountStatus
-    operationalStatus: $Enums.OperationalStatus
     createdAt: Date
     updatedAt: Date
+    accountStatus: $Enums.AccountStatus
+    operationalStatus: $Enums.OperationalStatus
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1413,10 +1413,10 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  vendor<T extends Prisma.User$vendorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vendorArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  influencer<T extends Prisma.User$influencerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$influencerArgs<ExtArgs>>): Prisma.Prisma__InfluencerClient<runtime.Types.Result.GetResult<Prisma.$InfluencerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  customerReview<T extends Prisma.User$customerReviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$customerReviewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   booking<T extends Prisma.User$bookingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bookingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  customerReview<T extends Prisma.User$customerReviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$customerReviewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  influencer<T extends Prisma.User$influencerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$influencerArgs<ExtArgs>>): Prisma.Prisma__InfluencerClient<runtime.Types.Result.GetResult<Prisma.$InfluencerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  vendor<T extends Prisma.User$vendorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vendorArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1452,10 +1452,10 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'String'>
-  readonly accountStatus: Prisma.FieldRef<"User", 'AccountStatus'>
-  readonly operationalStatus: Prisma.FieldRef<"User", 'OperationalStatus'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly accountStatus: Prisma.FieldRef<"User", 'AccountStatus'>
+  readonly operationalStatus: Prisma.FieldRef<"User", 'OperationalStatus'>
 }
     
 
@@ -1844,41 +1844,27 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.vendor
+ * User.booking
  */
-export type User$vendorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$bookingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Vendor
+   * Select specific fields to fetch from the Booking
    */
-  select?: Prisma.VendorSelect<ExtArgs> | null
+  select?: Prisma.BookingSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Vendor
+   * Omit specific fields from the Booking
    */
-  omit?: Prisma.VendorOmit<ExtArgs> | null
+  omit?: Prisma.BookingOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.VendorInclude<ExtArgs> | null
-  where?: Prisma.VendorWhereInput
-}
-
-/**
- * User.influencer
- */
-export type User$influencerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Influencer
-   */
-  select?: Prisma.InfluencerSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Influencer
-   */
-  omit?: Prisma.InfluencerOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InfluencerInclude<ExtArgs> | null
-  where?: Prisma.InfluencerWhereInput
+  include?: Prisma.BookingInclude<ExtArgs> | null
+  where?: Prisma.BookingWhereInput
+  orderBy?: Prisma.BookingOrderByWithRelationInput | Prisma.BookingOrderByWithRelationInput[]
+  cursor?: Prisma.BookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookingScalarFieldEnum | Prisma.BookingScalarFieldEnum[]
 }
 
 /**
@@ -1906,27 +1892,41 @@ export type User$customerReviewArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 /**
- * User.booking
+ * User.influencer
  */
-export type User$bookingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$influencerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Booking
+   * Select specific fields to fetch from the Influencer
    */
-  select?: Prisma.BookingSelect<ExtArgs> | null
+  select?: Prisma.InfluencerSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Booking
+   * Omit specific fields from the Influencer
    */
-  omit?: Prisma.BookingOmit<ExtArgs> | null
+  omit?: Prisma.InfluencerOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.BookingInclude<ExtArgs> | null
-  where?: Prisma.BookingWhereInput
-  orderBy?: Prisma.BookingOrderByWithRelationInput | Prisma.BookingOrderByWithRelationInput[]
-  cursor?: Prisma.BookingWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BookingScalarFieldEnum | Prisma.BookingScalarFieldEnum[]
+  include?: Prisma.InfluencerInclude<ExtArgs> | null
+  where?: Prisma.InfluencerWhereInput
+}
+
+/**
+ * User.vendor
+ */
+export type User$vendorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Vendor
+   */
+  select?: Prisma.VendorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Vendor
+   */
+  omit?: Prisma.VendorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorInclude<ExtArgs> | null
+  where?: Prisma.VendorWhereInput
 }
 
 /**

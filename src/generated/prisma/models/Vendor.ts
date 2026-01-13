@@ -29,17 +29,21 @@ export type AggregateVendor = {
 export type VendorAvgAggregateOutputType = {
   id: number | null
   userId: number | null
+  categoryId: number | null
   lat: number | null
   lng: number | null
   avgRating: runtime.Decimal | null
+  minPrice: runtime.Decimal | null
 }
 
 export type VendorSumAggregateOutputType = {
   id: bigint | null
   userId: bigint | null
+  categoryId: number | null
   lat: number | null
   lng: number | null
   avgRating: runtime.Decimal | null
+  minPrice: runtime.Decimal | null
 }
 
 export type VendorMinAggregateOutputType = {
@@ -47,12 +51,13 @@ export type VendorMinAggregateOutputType = {
   userId: bigint | null
   shopName: string | null
   description: string | null
-  category: string | null
+  categoryId: number | null
   lat: number | null
   lng: number | null
   address: string | null
   varified: boolean | null
   avgRating: runtime.Decimal | null
+  minPrice: runtime.Decimal | null
   createdAt: Date | null
 }
 
@@ -61,12 +66,13 @@ export type VendorMaxAggregateOutputType = {
   userId: bigint | null
   shopName: string | null
   description: string | null
-  category: string | null
+  categoryId: number | null
   lat: number | null
   lng: number | null
   address: string | null
   varified: boolean | null
   avgRating: runtime.Decimal | null
+  minPrice: runtime.Decimal | null
   createdAt: Date | null
 }
 
@@ -75,12 +81,13 @@ export type VendorCountAggregateOutputType = {
   userId: number
   shopName: number
   description: number
-  category: number
+  categoryId: number
   lat: number
   lng: number
   address: number
   varified: number
   avgRating: number
+  minPrice: number
   createdAt: number
   _all: number
 }
@@ -89,17 +96,21 @@ export type VendorCountAggregateOutputType = {
 export type VendorAvgAggregateInputType = {
   id?: true
   userId?: true
+  categoryId?: true
   lat?: true
   lng?: true
   avgRating?: true
+  minPrice?: true
 }
 
 export type VendorSumAggregateInputType = {
   id?: true
   userId?: true
+  categoryId?: true
   lat?: true
   lng?: true
   avgRating?: true
+  minPrice?: true
 }
 
 export type VendorMinAggregateInputType = {
@@ -107,12 +118,13 @@ export type VendorMinAggregateInputType = {
   userId?: true
   shopName?: true
   description?: true
-  category?: true
+  categoryId?: true
   lat?: true
   lng?: true
   address?: true
   varified?: true
   avgRating?: true
+  minPrice?: true
   createdAt?: true
 }
 
@@ -121,12 +133,13 @@ export type VendorMaxAggregateInputType = {
   userId?: true
   shopName?: true
   description?: true
-  category?: true
+  categoryId?: true
   lat?: true
   lng?: true
   address?: true
   varified?: true
   avgRating?: true
+  minPrice?: true
   createdAt?: true
 }
 
@@ -135,12 +148,13 @@ export type VendorCountAggregateInputType = {
   userId?: true
   shopName?: true
   description?: true
-  category?: true
+  categoryId?: true
   lat?: true
   lng?: true
   address?: true
   varified?: true
   avgRating?: true
+  minPrice?: true
   createdAt?: true
   _all?: true
 }
@@ -236,12 +250,13 @@ export type VendorGroupByOutputType = {
   userId: bigint
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified: boolean
   avgRating: runtime.Decimal
+  minPrice: runtime.Decimal
   createdAt: Date
   _count: VendorCountAggregateOutputType | null
   _avg: VendorAvgAggregateOutputType | null
@@ -273,20 +288,22 @@ export type VendorWhereInput = {
   userId?: Prisma.BigIntFilter<"Vendor"> | bigint | number
   shopName?: Prisma.StringFilter<"Vendor"> | string
   description?: Prisma.StringFilter<"Vendor"> | string
-  category?: Prisma.StringFilter<"Vendor"> | string
+  categoryId?: Prisma.IntFilter<"Vendor"> | number
   lat?: Prisma.FloatFilter<"Vendor"> | number
   lng?: Prisma.FloatFilter<"Vendor"> | number
   address?: Prisma.StringFilter<"Vendor"> | string
   varified?: Prisma.BoolFilter<"Vendor"> | boolean
   avgRating?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"Vendor"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  menu?: Prisma.MenuListRelationFilter
   booking?: Prisma.BookingListRelationFilter
-  vendorDocument?: Prisma.XOR<Prisma.VendorDocumentNullableScalarRelationFilter, Prisma.VendorDocumentWhereInput> | null
   customerReview?: Prisma.CustomerReviewListRelationFilter
-  influencerReview?: Prisma.InfluencerReviewListRelationFilter
   influencerCollaboration?: Prisma.InfluencerCollaborationListRelationFilter
+  influencerReview?: Prisma.InfluencerReviewListRelationFilter
+  menu?: Prisma.MenuListRelationFilter
+  vendorDocument?: Prisma.XOR<Prisma.VendorDocumentNullableScalarRelationFilter, Prisma.VendorDocumentWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
 }
 
 export type VendorOrderByWithRelationInput = {
@@ -294,20 +311,22 @@ export type VendorOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   shopName?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   address?: Prisma.SortOrder
   varified?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
+  minPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
-  menu?: Prisma.MenuOrderByRelationAggregateInput
   booking?: Prisma.BookingOrderByRelationAggregateInput
-  vendorDocument?: Prisma.VendorDocumentOrderByWithRelationInput
   customerReview?: Prisma.CustomerReviewOrderByRelationAggregateInput
-  influencerReview?: Prisma.InfluencerReviewOrderByRelationAggregateInput
   influencerCollaboration?: Prisma.InfluencerCollaborationOrderByRelationAggregateInput
+  influencerReview?: Prisma.InfluencerReviewOrderByRelationAggregateInput
+  menu?: Prisma.MenuOrderByRelationAggregateInput
+  vendorDocument?: Prisma.VendorDocumentOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
+  category?: Prisma.CategoryOrderByWithRelationInput
 }
 
 export type VendorWhereUniqueInput = Prisma.AtLeast<{
@@ -318,20 +337,22 @@ export type VendorWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.VendorWhereInput | Prisma.VendorWhereInput[]
   shopName?: Prisma.StringFilter<"Vendor"> | string
   description?: Prisma.StringFilter<"Vendor"> | string
-  category?: Prisma.StringFilter<"Vendor"> | string
+  categoryId?: Prisma.IntFilter<"Vendor"> | number
   lat?: Prisma.FloatFilter<"Vendor"> | number
   lng?: Prisma.FloatFilter<"Vendor"> | number
   address?: Prisma.StringFilter<"Vendor"> | string
   varified?: Prisma.BoolFilter<"Vendor"> | boolean
   avgRating?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFilter<"Vendor"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  menu?: Prisma.MenuListRelationFilter
   booking?: Prisma.BookingListRelationFilter
-  vendorDocument?: Prisma.XOR<Prisma.VendorDocumentNullableScalarRelationFilter, Prisma.VendorDocumentWhereInput> | null
   customerReview?: Prisma.CustomerReviewListRelationFilter
-  influencerReview?: Prisma.InfluencerReviewListRelationFilter
   influencerCollaboration?: Prisma.InfluencerCollaborationListRelationFilter
+  influencerReview?: Prisma.InfluencerReviewListRelationFilter
+  menu?: Prisma.MenuListRelationFilter
+  vendorDocument?: Prisma.XOR<Prisma.VendorDocumentNullableScalarRelationFilter, Prisma.VendorDocumentWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  category?: Prisma.XOR<Prisma.CategoryScalarRelationFilter, Prisma.CategoryWhereInput>
 }, "id" | "userId">
 
 export type VendorOrderByWithAggregationInput = {
@@ -339,12 +360,13 @@ export type VendorOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   shopName?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   address?: Prisma.SortOrder
   varified?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
+  minPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.VendorCountOrderByAggregateInput
   _avg?: Prisma.VendorAvgOrderByAggregateInput
@@ -361,12 +383,13 @@ export type VendorScalarWhereWithAggregatesInput = {
   userId?: Prisma.BigIntWithAggregatesFilter<"Vendor"> | bigint | number
   shopName?: Prisma.StringWithAggregatesFilter<"Vendor"> | string
   description?: Prisma.StringWithAggregatesFilter<"Vendor"> | string
-  category?: Prisma.StringWithAggregatesFilter<"Vendor"> | string
+  categoryId?: Prisma.IntWithAggregatesFilter<"Vendor"> | number
   lat?: Prisma.FloatWithAggregatesFilter<"Vendor"> | number
   lng?: Prisma.FloatWithAggregatesFilter<"Vendor"> | number
   address?: Prisma.StringWithAggregatesFilter<"Vendor"> | string
   varified?: Prisma.BoolWithAggregatesFilter<"Vendor"> | boolean
   avgRating?: Prisma.DecimalWithAggregatesFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalWithAggregatesFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Vendor"> | Date | string
 }
 
@@ -374,20 +397,21 @@ export type VendorCreateInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutVendorInput
-  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateInput = {
@@ -395,39 +419,41 @@ export type VendorUncheckedCreateInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
 }
 
 export type VendorUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
-  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateInput = {
@@ -435,19 +461,20 @@ export type VendorUncheckedUpdateInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
 }
 
 export type VendorCreateManyInput = {
@@ -455,12 +482,13 @@ export type VendorCreateManyInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
 }
 
@@ -468,12 +496,12 @@ export type VendorUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -482,12 +510,13 @@ export type VendorUncheckedUpdateManyInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -501,21 +530,24 @@ export type VendorCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   shopName?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   address?: Prisma.SortOrder
   varified?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
+  minPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type VendorAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
+  minPrice?: Prisma.SortOrder
 }
 
 export type VendorMaxOrderByAggregateInput = {
@@ -523,12 +555,13 @@ export type VendorMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   shopName?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   address?: Prisma.SortOrder
   varified?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
+  minPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -537,26 +570,39 @@ export type VendorMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   shopName?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  category?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   address?: Prisma.SortOrder
   varified?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
+  minPrice?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type VendorSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  categoryId?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   avgRating?: Prisma.SortOrder
+  minPrice?: Prisma.SortOrder
 }
 
 export type VendorScalarRelationFilter = {
   is?: Prisma.VendorWhereInput
   isNot?: Prisma.VendorWhereInput
+}
+
+export type VendorListRelationFilter = {
+  every?: Prisma.VendorWhereInput
+  some?: Prisma.VendorWhereInput
+  none?: Prisma.VendorWhereInput
+}
+
+export type VendorOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type VendorCreateNestedOneWithoutUserInput = {
@@ -609,6 +655,14 @@ export type DecimalFieldUpdateOperationsInput = {
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type VendorCreateNestedOneWithoutMenuInput = {
@@ -695,42 +749,86 @@ export type VendorUpdateOneRequiredWithoutInfluencerReviewNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.VendorUpdateToOneWithWhereWithoutInfluencerReviewInput, Prisma.VendorUpdateWithoutInfluencerReviewInput>, Prisma.VendorUncheckedUpdateWithoutInfluencerReviewInput>
 }
 
+export type VendorCreateNestedManyWithoutCategoryInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutCategoryInput, Prisma.VendorUncheckedCreateWithoutCategoryInput> | Prisma.VendorCreateWithoutCategoryInput[] | Prisma.VendorUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutCategoryInput | Prisma.VendorCreateOrConnectWithoutCategoryInput[]
+  createMany?: Prisma.VendorCreateManyCategoryInputEnvelope
+  connect?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+}
+
+export type VendorUncheckedCreateNestedManyWithoutCategoryInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutCategoryInput, Prisma.VendorUncheckedCreateWithoutCategoryInput> | Prisma.VendorCreateWithoutCategoryInput[] | Prisma.VendorUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutCategoryInput | Prisma.VendorCreateOrConnectWithoutCategoryInput[]
+  createMany?: Prisma.VendorCreateManyCategoryInputEnvelope
+  connect?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+}
+
+export type VendorUpdateManyWithoutCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutCategoryInput, Prisma.VendorUncheckedCreateWithoutCategoryInput> | Prisma.VendorCreateWithoutCategoryInput[] | Prisma.VendorUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutCategoryInput | Prisma.VendorCreateOrConnectWithoutCategoryInput[]
+  upsert?: Prisma.VendorUpsertWithWhereUniqueWithoutCategoryInput | Prisma.VendorUpsertWithWhereUniqueWithoutCategoryInput[]
+  createMany?: Prisma.VendorCreateManyCategoryInputEnvelope
+  set?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  disconnect?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  delete?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  connect?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  update?: Prisma.VendorUpdateWithWhereUniqueWithoutCategoryInput | Prisma.VendorUpdateWithWhereUniqueWithoutCategoryInput[]
+  updateMany?: Prisma.VendorUpdateManyWithWhereWithoutCategoryInput | Prisma.VendorUpdateManyWithWhereWithoutCategoryInput[]
+  deleteMany?: Prisma.VendorScalarWhereInput | Prisma.VendorScalarWhereInput[]
+}
+
+export type VendorUncheckedUpdateManyWithoutCategoryNestedInput = {
+  create?: Prisma.XOR<Prisma.VendorCreateWithoutCategoryInput, Prisma.VendorUncheckedCreateWithoutCategoryInput> | Prisma.VendorCreateWithoutCategoryInput[] | Prisma.VendorUncheckedCreateWithoutCategoryInput[]
+  connectOrCreate?: Prisma.VendorCreateOrConnectWithoutCategoryInput | Prisma.VendorCreateOrConnectWithoutCategoryInput[]
+  upsert?: Prisma.VendorUpsertWithWhereUniqueWithoutCategoryInput | Prisma.VendorUpsertWithWhereUniqueWithoutCategoryInput[]
+  createMany?: Prisma.VendorCreateManyCategoryInputEnvelope
+  set?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  disconnect?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  delete?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  connect?: Prisma.VendorWhereUniqueInput | Prisma.VendorWhereUniqueInput[]
+  update?: Prisma.VendorUpdateWithWhereUniqueWithoutCategoryInput | Prisma.VendorUpdateWithWhereUniqueWithoutCategoryInput[]
+  updateMany?: Prisma.VendorUpdateManyWithWhereWithoutCategoryInput | Prisma.VendorUpdateManyWithWhereWithoutCategoryInput[]
+  deleteMany?: Prisma.VendorScalarWhereInput | Prisma.VendorScalarWhereInput[]
+}
+
 export type VendorCreateWithoutUserInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateWithoutUserInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutUserInput = {
@@ -753,57 +851,60 @@ export type VendorUpdateWithoutUserInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutUserInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutMenuInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutVendorInput
   booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateWithoutMenuInput = {
@@ -811,18 +912,19 @@ export type VendorUncheckedCreateWithoutMenuInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutMenuInput = {
@@ -845,19 +947,20 @@ export type VendorUpdateWithoutMenuInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
   booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutMenuInput = {
@@ -865,37 +968,39 @@ export type VendorUncheckedUpdateWithoutMenuInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutBookingInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
   menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
   vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
-  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
-  influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateWithoutBookingInput = {
@@ -903,18 +1008,19 @@ export type VendorUncheckedCreateWithoutBookingInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
+  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
   menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
   vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
-  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
-  influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutBookingInput = {
@@ -937,19 +1043,20 @@ export type VendorUpdateWithoutBookingInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
   menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
   vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
-  customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
-  influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutBookingInput = {
@@ -957,37 +1064,39 @@ export type VendorUncheckedUpdateWithoutBookingInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
   menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
   vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
-  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
-  influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutVendorDocumentInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutVendorInput
-  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
   customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateWithoutVendorDocumentInput = {
@@ -995,18 +1104,19 @@ export type VendorUncheckedCreateWithoutVendorDocumentInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
   customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutVendorDocumentInput = {
@@ -1029,19 +1139,20 @@ export type VendorUpdateWithoutVendorDocumentInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
-  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutVendorDocumentInput = {
@@ -1049,37 +1160,39 @@ export type VendorUncheckedUpdateWithoutVendorDocumentInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutCustomerReviewInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutVendorInput
-  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateWithoutCustomerReviewInput = {
@@ -1087,18 +1200,19 @@ export type VendorUncheckedCreateWithoutCustomerReviewInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutCustomerReviewInput = {
@@ -1121,19 +1235,20 @@ export type VendorUpdateWithoutCustomerReviewInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
-  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutCustomerReviewInput = {
@@ -1141,37 +1256,39 @@ export type VendorUncheckedUpdateWithoutCustomerReviewInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
-  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutInfluencerCollaborationInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutVendorInput
-  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
   influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateWithoutInfluencerCollaborationInput = {
@@ -1179,18 +1296,19 @@ export type VendorUncheckedCreateWithoutInfluencerCollaborationInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
   influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutInfluencerCollaborationInput = {
@@ -1213,19 +1331,20 @@ export type VendorUpdateWithoutInfluencerCollaborationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
-  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
   influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutInfluencerCollaborationInput = {
@@ -1233,37 +1352,39 @@ export type VendorUncheckedUpdateWithoutInfluencerCollaborationInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
   influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
 }
 
 export type VendorCreateWithoutInfluencerReviewInput = {
   id?: bigint | number
   shopName: string
   description: string
-  category: string
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutVendorInput
-  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+  category: Prisma.CategoryCreateNestedOneWithoutVendorsInput
 }
 
 export type VendorUncheckedCreateWithoutInfluencerReviewInput = {
@@ -1271,18 +1392,19 @@ export type VendorUncheckedCreateWithoutInfluencerReviewInput = {
   userId: bigint | number
   shopName: string
   description: string
-  category: string
+  categoryId: number
   lat: number
   lng: number
   address: string
   varified?: boolean
   avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
-  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
   booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
   customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
 }
 
 export type VendorCreateOrConnectWithoutInfluencerReviewInput = {
@@ -1305,19 +1427,20 @@ export type VendorUpdateWithoutInfluencerReviewInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
-  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+  category?: Prisma.CategoryUpdateOneRequiredWithoutVendorsNestedInput
 }
 
 export type VendorUncheckedUpdateWithoutInfluencerReviewInput = {
@@ -1325,18 +1448,171 @@ export type VendorUncheckedUpdateWithoutInfluencerReviewInput = {
   userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   shopName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  category?: Prisma.StringFieldUpdateOperationsInput | string
+  categoryId?: Prisma.IntFieldUpdateOperationsInput | number
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
   lng?: Prisma.FloatFieldUpdateOperationsInput | number
   address?: Prisma.StringFieldUpdateOperationsInput | string
   varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
   booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
-  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
   customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
   influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
+}
+
+export type VendorCreateWithoutCategoryInput = {
+  id?: bigint | number
+  shopName: string
+  description: string
+  lat: number
+  lng: number
+  address: string
+  varified?: boolean
+  avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  booking?: Prisma.BookingCreateNestedManyWithoutVendorInput
+  customerReview?: Prisma.CustomerReviewCreateNestedManyWithoutVendorInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentCreateNestedOneWithoutVendorInput
+  user: Prisma.UserCreateNestedOneWithoutVendorInput
+}
+
+export type VendorUncheckedCreateWithoutCategoryInput = {
+  id?: bigint | number
+  userId: bigint | number
+  shopName: string
+  description: string
+  lat: number
+  lng: number
+  address: string
+  varified?: boolean
+  avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  booking?: Prisma.BookingUncheckedCreateNestedManyWithoutVendorInput
+  customerReview?: Prisma.CustomerReviewUncheckedCreateNestedManyWithoutVendorInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedCreateNestedManyWithoutVendorInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedCreateNestedManyWithoutVendorInput
+  menu?: Prisma.MenuUncheckedCreateNestedManyWithoutVendorInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedCreateNestedOneWithoutVendorInput
+}
+
+export type VendorCreateOrConnectWithoutCategoryInput = {
+  where: Prisma.VendorWhereUniqueInput
+  create: Prisma.XOR<Prisma.VendorCreateWithoutCategoryInput, Prisma.VendorUncheckedCreateWithoutCategoryInput>
+}
+
+export type VendorCreateManyCategoryInputEnvelope = {
+  data: Prisma.VendorCreateManyCategoryInput | Prisma.VendorCreateManyCategoryInput[]
+  skipDuplicates?: boolean
+}
+
+export type VendorUpsertWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.VendorWhereUniqueInput
+  update: Prisma.XOR<Prisma.VendorUpdateWithoutCategoryInput, Prisma.VendorUncheckedUpdateWithoutCategoryInput>
+  create: Prisma.XOR<Prisma.VendorCreateWithoutCategoryInput, Prisma.VendorUncheckedCreateWithoutCategoryInput>
+}
+
+export type VendorUpdateWithWhereUniqueWithoutCategoryInput = {
+  where: Prisma.VendorWhereUniqueInput
+  data: Prisma.XOR<Prisma.VendorUpdateWithoutCategoryInput, Prisma.VendorUncheckedUpdateWithoutCategoryInput>
+}
+
+export type VendorUpdateManyWithWhereWithoutCategoryInput = {
+  where: Prisma.VendorScalarWhereInput
+  data: Prisma.XOR<Prisma.VendorUpdateManyMutationInput, Prisma.VendorUncheckedUpdateManyWithoutCategoryInput>
+}
+
+export type VendorScalarWhereInput = {
+  AND?: Prisma.VendorScalarWhereInput | Prisma.VendorScalarWhereInput[]
+  OR?: Prisma.VendorScalarWhereInput[]
+  NOT?: Prisma.VendorScalarWhereInput | Prisma.VendorScalarWhereInput[]
+  id?: Prisma.BigIntFilter<"Vendor"> | bigint | number
+  userId?: Prisma.BigIntFilter<"Vendor"> | bigint | number
+  shopName?: Prisma.StringFilter<"Vendor"> | string
+  description?: Prisma.StringFilter<"Vendor"> | string
+  categoryId?: Prisma.IntFilter<"Vendor"> | number
+  lat?: Prisma.FloatFilter<"Vendor"> | number
+  lng?: Prisma.FloatFilter<"Vendor"> | number
+  address?: Prisma.StringFilter<"Vendor"> | string
+  varified?: Prisma.BoolFilter<"Vendor"> | boolean
+  avgRating?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFilter<"Vendor"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFilter<"Vendor"> | Date | string
+}
+
+export type VendorCreateManyCategoryInput = {
+  id?: bigint | number
+  userId: bigint | number
+  shopName: string
+  description: string
+  lat: number
+  lng: number
+  address: string
+  varified?: boolean
+  avgRating?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+}
+
+export type VendorUpdateWithoutCategoryInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  shopName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lat?: Prisma.FloatFieldUpdateOperationsInput | number
+  lng?: Prisma.FloatFieldUpdateOperationsInput | number
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking?: Prisma.BookingUpdateManyWithoutVendorNestedInput
+  customerReview?: Prisma.CustomerReviewUpdateManyWithoutVendorNestedInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUpdateOneWithoutVendorNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateWithoutCategoryInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  shopName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lat?: Prisma.FloatFieldUpdateOperationsInput | number
+  lng?: Prisma.FloatFieldUpdateOperationsInput | number
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking?: Prisma.BookingUncheckedUpdateManyWithoutVendorNestedInput
+  customerReview?: Prisma.CustomerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  influencerCollaboration?: Prisma.InfluencerCollaborationUncheckedUpdateManyWithoutVendorNestedInput
+  influencerReview?: Prisma.InfluencerReviewUncheckedUpdateManyWithoutVendorNestedInput
+  menu?: Prisma.MenuUncheckedUpdateManyWithoutVendorNestedInput
+  vendorDocument?: Prisma.VendorDocumentUncheckedUpdateOneWithoutVendorNestedInput
+}
+
+export type VendorUncheckedUpdateManyWithoutCategoryInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  userId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  shopName?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  lat?: Prisma.FloatFieldUpdateOperationsInput | number
+  lng?: Prisma.FloatFieldUpdateOperationsInput | number
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  varified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  avgRating?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  minPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -1345,19 +1621,19 @@ export type VendorUncheckedUpdateWithoutInfluencerReviewInput = {
  */
 
 export type VendorCountOutputType = {
-  menu: number
   booking: number
   customerReview: number
-  influencerReview: number
   influencerCollaboration: number
+  influencerReview: number
+  menu: number
 }
 
 export type VendorCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  menu?: boolean | VendorCountOutputTypeCountMenuArgs
   booking?: boolean | VendorCountOutputTypeCountBookingArgs
   customerReview?: boolean | VendorCountOutputTypeCountCustomerReviewArgs
-  influencerReview?: boolean | VendorCountOutputTypeCountInfluencerReviewArgs
   influencerCollaboration?: boolean | VendorCountOutputTypeCountInfluencerCollaborationArgs
+  influencerReview?: boolean | VendorCountOutputTypeCountInfluencerReviewArgs
+  menu?: boolean | VendorCountOutputTypeCountMenuArgs
 }
 
 /**
@@ -1368,13 +1644,6 @@ export type VendorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the VendorCountOutputType
    */
   select?: Prisma.VendorCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * VendorCountOutputType without action
- */
-export type VendorCountOutputTypeCountMenuArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MenuWhereInput
 }
 
 /**
@@ -1394,6 +1663,13 @@ export type VendorCountOutputTypeCountCustomerReviewArgs<ExtArgs extends runtime
 /**
  * VendorCountOutputType without action
  */
+export type VendorCountOutputTypeCountInfluencerCollaborationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InfluencerCollaborationWhereInput
+}
+
+/**
+ * VendorCountOutputType without action
+ */
 export type VendorCountOutputTypeCountInfluencerReviewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.InfluencerReviewWhereInput
 }
@@ -1401,8 +1677,8 @@ export type VendorCountOutputTypeCountInfluencerReviewArgs<ExtArgs extends runti
 /**
  * VendorCountOutputType without action
  */
-export type VendorCountOutputTypeCountInfluencerCollaborationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InfluencerCollaborationWhereInput
+export type VendorCountOutputTypeCountMenuArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MenuWhereInput
 }
 
 
@@ -1411,20 +1687,22 @@ export type VendorSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   userId?: boolean
   shopName?: boolean
   description?: boolean
-  category?: boolean
+  categoryId?: boolean
   lat?: boolean
   lng?: boolean
   address?: boolean
   varified?: boolean
   avgRating?: boolean
+  minPrice?: boolean
   createdAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  menu?: boolean | Prisma.Vendor$menuArgs<ExtArgs>
   booking?: boolean | Prisma.Vendor$bookingArgs<ExtArgs>
-  vendorDocument?: boolean | Prisma.Vendor$vendorDocumentArgs<ExtArgs>
   customerReview?: boolean | Prisma.Vendor$customerReviewArgs<ExtArgs>
-  influencerReview?: boolean | Prisma.Vendor$influencerReviewArgs<ExtArgs>
   influencerCollaboration?: boolean | Prisma.Vendor$influencerCollaborationArgs<ExtArgs>
+  influencerReview?: boolean | Prisma.Vendor$influencerReviewArgs<ExtArgs>
+  menu?: boolean | Prisma.Vendor$menuArgs<ExtArgs>
+  vendorDocument?: boolean | Prisma.Vendor$vendorDocumentArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vendor"]>
 
@@ -1433,14 +1711,16 @@ export type VendorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   userId?: boolean
   shopName?: boolean
   description?: boolean
-  category?: boolean
+  categoryId?: boolean
   lat?: boolean
   lng?: boolean
   address?: boolean
   varified?: boolean
   avgRating?: boolean
+  minPrice?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vendor"]>
 
 export type VendorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1448,14 +1728,16 @@ export type VendorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   userId?: boolean
   shopName?: boolean
   description?: boolean
-  category?: boolean
+  categoryId?: boolean
   lat?: boolean
   lng?: boolean
   address?: boolean
   varified?: boolean
   avgRating?: boolean
+  minPrice?: boolean
   createdAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vendor"]>
 
 export type VendorSelectScalar = {
@@ -1463,55 +1745,61 @@ export type VendorSelectScalar = {
   userId?: boolean
   shopName?: boolean
   description?: boolean
-  category?: boolean
+  categoryId?: boolean
   lat?: boolean
   lng?: boolean
   address?: boolean
   varified?: boolean
   avgRating?: boolean
+  minPrice?: boolean
   createdAt?: boolean
 }
 
-export type VendorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "shopName" | "description" | "category" | "lat" | "lng" | "address" | "varified" | "avgRating" | "createdAt", ExtArgs["result"]["vendor"]>
+export type VendorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "shopName" | "description" | "categoryId" | "lat" | "lng" | "address" | "varified" | "avgRating" | "minPrice" | "createdAt", ExtArgs["result"]["vendor"]>
 export type VendorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  menu?: boolean | Prisma.Vendor$menuArgs<ExtArgs>
   booking?: boolean | Prisma.Vendor$bookingArgs<ExtArgs>
-  vendorDocument?: boolean | Prisma.Vendor$vendorDocumentArgs<ExtArgs>
   customerReview?: boolean | Prisma.Vendor$customerReviewArgs<ExtArgs>
-  influencerReview?: boolean | Prisma.Vendor$influencerReviewArgs<ExtArgs>
   influencerCollaboration?: boolean | Prisma.Vendor$influencerCollaborationArgs<ExtArgs>
+  influencerReview?: boolean | Prisma.Vendor$influencerReviewArgs<ExtArgs>
+  menu?: boolean | Prisma.Vendor$menuArgs<ExtArgs>
+  vendorDocument?: boolean | Prisma.Vendor$vendorDocumentArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.VendorCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type VendorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }
 export type VendorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  category?: boolean | Prisma.CategoryDefaultArgs<ExtArgs>
 }
 
 export type $VendorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Vendor"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-    menu: Prisma.$MenuPayload<ExtArgs>[]
     booking: Prisma.$BookingPayload<ExtArgs>[]
-    vendorDocument: Prisma.$VendorDocumentPayload<ExtArgs> | null
     customerReview: Prisma.$CustomerReviewPayload<ExtArgs>[]
-    influencerReview: Prisma.$InfluencerReviewPayload<ExtArgs>[]
     influencerCollaboration: Prisma.$InfluencerCollaborationPayload<ExtArgs>[]
+    influencerReview: Prisma.$InfluencerReviewPayload<ExtArgs>[]
+    menu: Prisma.$MenuPayload<ExtArgs>[]
+    vendorDocument: Prisma.$VendorDocumentPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
+    category: Prisma.$CategoryPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
     userId: bigint
     shopName: string
     description: string
-    category: string
+    categoryId: number
     lat: number
     lng: number
     address: string
     varified: boolean
     avgRating: runtime.Decimal
+    minPrice: runtime.Decimal
     createdAt: Date
   }, ExtArgs["result"]["vendor"]>
   composites: {}
@@ -1907,13 +2195,14 @@ readonly fields: VendorFieldRefs;
  */
 export interface Prisma__VendorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  menu<T extends Prisma.Vendor$menuArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$menuArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   booking<T extends Prisma.Vendor$bookingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$bookingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  vendorDocument<T extends Prisma.Vendor$vendorDocumentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$vendorDocumentArgs<ExtArgs>>): Prisma.Prisma__VendorDocumentClient<runtime.Types.Result.GetResult<Prisma.$VendorDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   customerReview<T extends Prisma.Vendor$customerReviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$customerReviewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CustomerReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  influencerReview<T extends Prisma.Vendor$influencerReviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$influencerReviewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InfluencerReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   influencerCollaboration<T extends Prisma.Vendor$influencerCollaborationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$influencerCollaborationArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InfluencerCollaborationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  influencerReview<T extends Prisma.Vendor$influencerReviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$influencerReviewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InfluencerReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  menu<T extends Prisma.Vendor$menuArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$menuArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MenuPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vendorDocument<T extends Prisma.Vendor$vendorDocumentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Vendor$vendorDocumentArgs<ExtArgs>>): Prisma.Prisma__VendorDocumentClient<runtime.Types.Result.GetResult<Prisma.$VendorDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  category<T extends Prisma.CategoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CategoryDefaultArgs<ExtArgs>>): Prisma.Prisma__CategoryClient<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1947,12 +2236,13 @@ export interface VendorFieldRefs {
   readonly userId: Prisma.FieldRef<"Vendor", 'BigInt'>
   readonly shopName: Prisma.FieldRef<"Vendor", 'String'>
   readonly description: Prisma.FieldRef<"Vendor", 'String'>
-  readonly category: Prisma.FieldRef<"Vendor", 'String'>
+  readonly categoryId: Prisma.FieldRef<"Vendor", 'Int'>
   readonly lat: Prisma.FieldRef<"Vendor", 'Float'>
   readonly lng: Prisma.FieldRef<"Vendor", 'Float'>
   readonly address: Prisma.FieldRef<"Vendor", 'String'>
   readonly varified: Prisma.FieldRef<"Vendor", 'Boolean'>
   readonly avgRating: Prisma.FieldRef<"Vendor", 'Decimal'>
+  readonly minPrice: Prisma.FieldRef<"Vendor", 'Decimal'>
   readonly createdAt: Prisma.FieldRef<"Vendor", 'DateTime'>
 }
     
@@ -2350,30 +2640,6 @@ export type VendorDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Vendor.menu
- */
-export type Vendor$menuArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Menu
-   */
-  select?: Prisma.MenuSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Menu
-   */
-  omit?: Prisma.MenuOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MenuInclude<ExtArgs> | null
-  where?: Prisma.MenuWhereInput
-  orderBy?: Prisma.MenuOrderByWithRelationInput | Prisma.MenuOrderByWithRelationInput[]
-  cursor?: Prisma.MenuWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MenuScalarFieldEnum | Prisma.MenuScalarFieldEnum[]
-}
-
-/**
  * Vendor.booking
  */
 export type Vendor$bookingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2395,25 +2661,6 @@ export type Vendor$bookingArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.BookingScalarFieldEnum | Prisma.BookingScalarFieldEnum[]
-}
-
-/**
- * Vendor.vendorDocument
- */
-export type Vendor$vendorDocumentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the VendorDocument
-   */
-  select?: Prisma.VendorDocumentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the VendorDocument
-   */
-  omit?: Prisma.VendorDocumentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.VendorDocumentInclude<ExtArgs> | null
-  where?: Prisma.VendorDocumentWhereInput
 }
 
 /**
@@ -2441,6 +2688,30 @@ export type Vendor$customerReviewArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * Vendor.influencerCollaboration
+ */
+export type Vendor$influencerCollaborationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InfluencerCollaboration
+   */
+  select?: Prisma.InfluencerCollaborationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InfluencerCollaboration
+   */
+  omit?: Prisma.InfluencerCollaborationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InfluencerCollaborationInclude<ExtArgs> | null
+  where?: Prisma.InfluencerCollaborationWhereInput
+  orderBy?: Prisma.InfluencerCollaborationOrderByWithRelationInput | Prisma.InfluencerCollaborationOrderByWithRelationInput[]
+  cursor?: Prisma.InfluencerCollaborationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InfluencerCollaborationScalarFieldEnum | Prisma.InfluencerCollaborationScalarFieldEnum[]
+}
+
+/**
  * Vendor.influencerReview
  */
 export type Vendor$influencerReviewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2465,27 +2736,46 @@ export type Vendor$influencerReviewArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * Vendor.influencerCollaboration
+ * Vendor.menu
  */
-export type Vendor$influencerCollaborationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Vendor$menuArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the InfluencerCollaboration
+   * Select specific fields to fetch from the Menu
    */
-  select?: Prisma.InfluencerCollaborationSelect<ExtArgs> | null
+  select?: Prisma.MenuSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the InfluencerCollaboration
+   * Omit specific fields from the Menu
    */
-  omit?: Prisma.InfluencerCollaborationOmit<ExtArgs> | null
+  omit?: Prisma.MenuOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.InfluencerCollaborationInclude<ExtArgs> | null
-  where?: Prisma.InfluencerCollaborationWhereInput
-  orderBy?: Prisma.InfluencerCollaborationOrderByWithRelationInput | Prisma.InfluencerCollaborationOrderByWithRelationInput[]
-  cursor?: Prisma.InfluencerCollaborationWhereUniqueInput
+  include?: Prisma.MenuInclude<ExtArgs> | null
+  where?: Prisma.MenuWhereInput
+  orderBy?: Prisma.MenuOrderByWithRelationInput | Prisma.MenuOrderByWithRelationInput[]
+  cursor?: Prisma.MenuWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.InfluencerCollaborationScalarFieldEnum | Prisma.InfluencerCollaborationScalarFieldEnum[]
+  distinct?: Prisma.MenuScalarFieldEnum | Prisma.MenuScalarFieldEnum[]
+}
+
+/**
+ * Vendor.vendorDocument
+ */
+export type Vendor$vendorDocumentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VendorDocument
+   */
+  select?: Prisma.VendorDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VendorDocument
+   */
+  omit?: Prisma.VendorDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorDocumentInclude<ExtArgs> | null
+  where?: Prisma.VendorDocumentWhereInput
 }
 
 /**

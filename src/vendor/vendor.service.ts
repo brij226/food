@@ -3,6 +3,8 @@ import { CreateVendorDto } from './dto/create-vendor.dto';
 import { UpdateVendorDto } from './dto/update-vendor.dto';
 import { UserService }  from '../user/user.service';
 import { PrismaService } from '../prisma/prisma.service';
+import { VendorFilterInput } from 'src/graphql/vendor/dto/vendor-filter-input.dto';
+import { Decimal } from '@prisma/client/runtime/client';
 @Injectable()
 export class VendorService {
   constructor(private userService:UserService,
@@ -54,7 +56,6 @@ export class VendorService {
     })
   }
 
- 
 
   update(id: number, updateVendorDto: UpdateVendorDto) {
     return `This action updates a #${id} vendor`;
@@ -63,32 +64,55 @@ export class VendorService {
   remove(id: number) {
     return `This action removes a #${id} vendor`;
   }
-  //frontend content
-  getApprovedVendors(){
-      return this.prisma.user.findMany({
-      where : {
-        role:'vendor',
-        accountStatus : 'active',
-        operationalStatus : 'active',
-        vendor : {
-          varified : true,
-          vendorDocument : {
-            docStatus : 'approved'
+  
+  // API frontend content
+  getApprovedVendors(args?: VendorFilterInput){
+      const {categoryId, rating, minPrice, maxPrice, sortBy} = args ?? {};
+         return this.prisma.user.findMany({
+        where : {
+          role:'vendor',
+          accountStatus : 'active',
+          operationalStatus : 'active',
+          vendor : {
+            varified : true,
+            vendorDocument : {
+              docStatus : 'approved'
+            },
+            //category filter
+            categoryId : categoryId ?? undefined,
+
+            avgRating: rating ? { gte : rating } : undefined,
+
+            // Price range filter
+            menu:
+            minPrice || maxPrice
+            ? {
+                some: {
+                  isActive: true,
+                  price: {
+                    gte: minPrice ?? undefined,
+                    lte: maxPrice ?? undefined,
+                  },
+                },
+              }
+            : undefined 
           },
         },
-      },
-      include : {
-        vendor : true
-        /*vendor : {
-          include : {
-            vendorDocument: true
-          },
-        },*/
-      },
-      orderBy: {
-        createdAt: 'asc',
-      }
-    })
+        include : {
+          vendor : true // {
+            /*include : {
+              menu : true
+            }*/ 
+        // }
+        },
+        orderBy: sortBy === 'TOP_RATED' ? {
+        vendor : {avgRating : 'desc'}
+        } 
+        : sortBy === 'BUDGET' ? {
+          vendor : { minPrice : 'asc'}
+        }
+        : {createdAt : 'desc'},
+    });
   }
   
   findOne(id: number) {

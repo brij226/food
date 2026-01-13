@@ -59,7 +59,8 @@ export const ModelName = {
   CustomerReview: 'CustomerReview',
   Influencer: 'Influencer',
   InfluencerCollaboration: 'InfluencerCollaboration',
-  InfluencerReview: 'InfluencerReview'
+  InfluencerReview: 'InfluencerReview',
+  Category: 'Category'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -85,10 +86,10 @@ export const UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   role: 'role',
-  accountStatus: 'accountStatus',
-  operationalStatus: 'operationalStatus',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  accountStatus: 'accountStatus',
+  operationalStatus: 'operationalStatus'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -99,12 +100,13 @@ export const VendorScalarFieldEnum = {
   userId: 'userId',
   shopName: 'shopName',
   description: 'description',
-  category: 'category',
+  categoryId: 'categoryId',
   lat: 'lat',
   lng: 'lng',
   address: 'address',
   varified: 'varified',
   avgRating: 'avgRating',
+  minPrice: 'minPrice',
   createdAt: 'createdAt'
 } as const
 
@@ -117,6 +119,7 @@ export const MenuScalarFieldEnum = {
   name: 'name',
   price: 'price',
   unit: 'unit',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -126,19 +129,19 @@ export type MenuScalarFieldEnum = (typeof MenuScalarFieldEnum)[keyof typeof Menu
 
 export const BookingScalarFieldEnum = {
   id: 'id',
-  bookingCode: 'bookingCode',
   vendorId: 'vendorId',
   customerId: 'customerId',
-  serviceType: 'serviceType',
-  serviceDate: 'serviceDate',
-  amount: 'amount',
+  scheduledAt: 'scheduledAt',
   advancePaid: 'advancePaid',
   trackingCode: 'trackingCode',
-  paymentStatus: 'paymentStatus',
-  bookingStatus: 'bookingStatus',
-  scheduledAt: 'scheduledAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  amount: 'amount',
+  bookingCode: 'bookingCode',
+  bookingStatus: 'bookingStatus',
+  paymentStatus: 'paymentStatus',
+  serviceDate: 'serviceDate',
+  serviceType: 'serviceType'
 } as const
 
 export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
@@ -217,6 +220,19 @@ export const InfluencerReviewScalarFieldEnum = {
 } as const
 
 export type InfluencerReviewScalarFieldEnum = (typeof InfluencerReviewScalarFieldEnum)[keyof typeof InfluencerReviewScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  iconUrl: 'iconUrl',
+  isActive: 'isActive',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
 export const SortOrder = {

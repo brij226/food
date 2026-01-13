@@ -289,8 +289,8 @@ export type InfluencerReviewWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"InfluencerReview"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InfluencerReview"> | Date | string
   collaboration?: Prisma.XOR<Prisma.InfluencerCollaborationScalarRelationFilter, Prisma.InfluencerCollaborationWhereInput>
-  vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
   influencer?: Prisma.XOR<Prisma.InfluencerScalarRelationFilter, Prisma.InfluencerWhereInput>
+  vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
 }
 
 export type InfluencerReviewOrderByWithRelationInput = {
@@ -307,8 +307,8 @@ export type InfluencerReviewOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   collaboration?: Prisma.InfluencerCollaborationOrderByWithRelationInput
-  vendor?: Prisma.VendorOrderByWithRelationInput
   influencer?: Prisma.InfluencerOrderByWithRelationInput
+  vendor?: Prisma.VendorOrderByWithRelationInput
 }
 
 export type InfluencerReviewWhereUniqueInput = Prisma.AtLeast<{
@@ -328,8 +328,8 @@ export type InfluencerReviewWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"InfluencerReview"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InfluencerReview"> | Date | string
   collaboration?: Prisma.XOR<Prisma.InfluencerCollaborationScalarRelationFilter, Prisma.InfluencerCollaborationWhereInput>
-  vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
   influencer?: Prisma.XOR<Prisma.InfluencerScalarRelationFilter, Prisma.InfluencerWhereInput>
+  vendor?: Prisma.XOR<Prisma.VendorScalarRelationFilter, Prisma.VendorWhereInput>
 }, "id" | "collaborationId">
 
 export type InfluencerReviewOrderByWithAggregationInput = {
@@ -381,8 +381,8 @@ export type InfluencerReviewCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   collaboration: Prisma.InfluencerCollaborationCreateNestedOneWithoutInfluencerReviewInput
-  vendor: Prisma.VendorCreateNestedOneWithoutInfluencerReviewInput
   influencer: Prisma.InfluencerCreateNestedOneWithoutInfluencerReviewInput
+  vendor: Prisma.VendorCreateNestedOneWithoutInfluencerReviewInput
 }
 
 export type InfluencerReviewUncheckedCreateInput = {
@@ -411,8 +411,8 @@ export type InfluencerReviewUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   collaboration?: Prisma.InfluencerCollaborationUpdateOneRequiredWithoutInfluencerReviewNestedInput
-  vendor?: Prisma.VendorUpdateOneRequiredWithoutInfluencerReviewNestedInput
   influencer?: Prisma.InfluencerUpdateOneRequiredWithoutInfluencerReviewNestedInput
+  vendor?: Prisma.VendorUpdateOneRequiredWithoutInfluencerReviewNestedInput
 }
 
 export type InfluencerReviewUncheckedUpdateInput = {
@@ -816,8 +816,8 @@ export type InfluencerReviewCreateWithoutCollaborationInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  vendor: Prisma.VendorCreateNestedOneWithoutInfluencerReviewInput
   influencer: Prisma.InfluencerCreateNestedOneWithoutInfluencerReviewInput
+  vendor: Prisma.VendorCreateNestedOneWithoutInfluencerReviewInput
 }
 
 export type InfluencerReviewUncheckedCreateWithoutCollaborationInput = {
@@ -860,8 +860,8 @@ export type InfluencerReviewUpdateWithoutCollaborationInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  vendor?: Prisma.VendorUpdateOneRequiredWithoutInfluencerReviewNestedInput
   influencer?: Prisma.InfluencerUpdateOneRequiredWithoutInfluencerReviewNestedInput
+  vendor?: Prisma.VendorUpdateOneRequiredWithoutInfluencerReviewNestedInput
 }
 
 export type InfluencerReviewUncheckedUpdateWithoutCollaborationInput = {
@@ -1006,8 +1006,8 @@ export type InfluencerReviewSelect<ExtArgs extends runtime.Types.Extensions.Inte
   createdAt?: boolean
   updatedAt?: boolean
   collaboration?: boolean | Prisma.InfluencerCollaborationDefaultArgs<ExtArgs>
-  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   influencer?: boolean | Prisma.InfluencerDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["influencerReview"]>
 
 export type InfluencerReviewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1024,8 +1024,8 @@ export type InfluencerReviewSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   createdAt?: boolean
   updatedAt?: boolean
   collaboration?: boolean | Prisma.InfluencerCollaborationDefaultArgs<ExtArgs>
-  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   influencer?: boolean | Prisma.InfluencerDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["influencerReview"]>
 
 export type InfluencerReviewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1042,8 +1042,8 @@ export type InfluencerReviewSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   createdAt?: boolean
   updatedAt?: boolean
   collaboration?: boolean | Prisma.InfluencerCollaborationDefaultArgs<ExtArgs>
-  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   influencer?: boolean | Prisma.InfluencerDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["influencerReview"]>
 
 export type InfluencerReviewSelectScalar = {
@@ -1064,26 +1064,26 @@ export type InfluencerReviewSelectScalar = {
 export type InfluencerReviewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "collaborationId" | "vendorId" | "influencerId" | "caption" | "rating" | "mediaUrl" | "mediaType" | "moderationStatus" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["influencerReview"]>
 export type InfluencerReviewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collaboration?: boolean | Prisma.InfluencerCollaborationDefaultArgs<ExtArgs>
-  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   influencer?: boolean | Prisma.InfluencerDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }
 export type InfluencerReviewIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collaboration?: boolean | Prisma.InfluencerCollaborationDefaultArgs<ExtArgs>
-  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   influencer?: boolean | Prisma.InfluencerDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }
 export type InfluencerReviewIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   collaboration?: boolean | Prisma.InfluencerCollaborationDefaultArgs<ExtArgs>
-  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
   influencer?: boolean | Prisma.InfluencerDefaultArgs<ExtArgs>
+  vendor?: boolean | Prisma.VendorDefaultArgs<ExtArgs>
 }
 
 export type $InfluencerReviewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "InfluencerReview"
   objects: {
     collaboration: Prisma.$InfluencerCollaborationPayload<ExtArgs>
-    vendor: Prisma.$VendorPayload<ExtArgs>
     influencer: Prisma.$InfluencerPayload<ExtArgs>
+    vendor: Prisma.$VendorPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -1493,8 +1493,8 @@ readonly fields: InfluencerReviewFieldRefs;
 export interface Prisma__InfluencerReviewClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   collaboration<T extends Prisma.InfluencerCollaborationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InfluencerCollaborationDefaultArgs<ExtArgs>>): Prisma.Prisma__InfluencerCollaborationClient<runtime.Types.Result.GetResult<Prisma.$InfluencerCollaborationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  vendor<T extends Prisma.VendorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendorDefaultArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   influencer<T extends Prisma.InfluencerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InfluencerDefaultArgs<ExtArgs>>): Prisma.Prisma__InfluencerClient<runtime.Types.Result.GetResult<Prisma.$InfluencerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  vendor<T extends Prisma.VendorDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.VendorDefaultArgs<ExtArgs>>): Prisma.Prisma__VendorClient<runtime.Types.Result.GetResult<Prisma.$VendorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -23,6 +23,7 @@
     "@apollo/server": "^5.2.0",
     "@as-integrations/fastify": "^3.1.0",
     "@casl/ability": "^6.7.5",
+    "@fastify/cors": "^11.2.0",
     "@fastify/formbody": "^8.0.2",
     "@nestjs/apollo": "^13.2.3",
     "@nestjs/common": "^11.0.1",
